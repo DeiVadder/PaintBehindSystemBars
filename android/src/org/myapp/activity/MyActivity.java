@@ -73,11 +73,14 @@ public class MyActivity extends QtActivity
         //For devices that have a display cutout, the cutout may be bigger than the statusbar height
         //See 'Tall cutout' setting on a device's Developer options
         //To compensate, fetch the SafeInset for the top and use the maximum of the safeInsert and the statusbarHeight as safe margin
-        DisplayCutout cutout = getWindow().getDecorView().getRootWindowInsets().getDisplayCutout();
-        if(cutout != null) {
-            int cutoutHeight = cutout.getSafeInsetTop();
-            if(cutoutHeight > 0)
-                return cutoutHeight;
+        //This is only necessary when the android api is >= 28 (Anroid P), before that, there were no cutouts
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            DisplayCutout cutout = getWindow().getDecorView().getRootWindowInsets().getDisplayCutout();
+            if(cutout != null) {
+                int cutoutHeight = cutout.getSafeInsetTop();
+                if(cutoutHeight > 0)
+                    return cutoutHeight;
+            }
         }
         return 0;
     }
