@@ -52,6 +52,12 @@ qt-cmake -S . -B <build-dir>
 cmake --build <build-dir>
 ```
 
+### Tested with Qt 6.12.0
+
+* Android 12, Pixel 3 (arm64-v8a): portrait and both landscape orientations, the navigation bar
+  margin moves to the correct side.
+* iOS 27, iPhone 13: portrait (top 47, bottom 34) and landscape (left/right 47, bottom 20).
+
 The Qt 5 version of this example (custom Java activity, JNI and `QPlatformWindow::safeAreaMargins()`)
 is still available in the history of the `main` branch.
 
